@@ -1,7 +1,7 @@
 AQI
 ===
 
-Easily convert pollutant measurements into AQI vcalues per the [EPA's blue scale](https://forum.airnowtech.org/t/the-aqi-equation/169).
+Easily convert pollutant measurements into AQI values per the [EPA's blue scale](https://forum.airnowtech.org/t/the-aqi-equation/169).
 
 Usage
 -----
