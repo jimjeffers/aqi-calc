@@ -1,0 +1,9 @@
+{
+  "name": "aqi",
+  "version": "1.0.0",
+  "description": "Easily calculate air quality index values for pollutants.",
+  "main": "index.js",
+  "repository": "https://github.com/jimjeffers/AQI.git",
+  "author": "Jim Jeffers",
+  "license": "MIT"
+}
