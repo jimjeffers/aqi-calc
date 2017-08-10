@@ -2,8 +2,24 @@
   "name": "aqi",
   "version": "1.0.0",
   "description": "Easily calculate air quality index values for pollutants.",
-  "main": "index.js",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
   "repository": "https://github.com/jimjeffers/AQI.git",
   "author": "Jim Jeffers",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "flow-bin": "^0.48.0",
+    "flow-copy-source": "^1.1.0"
+  },
+  "scripts": {
+    "prepublish": "npm run babel-prepublish && npm run flow-prepublish",
+    "babel-prepublish": "babel src/ -d lib",
+    "flow-prepublish": "flow-copy-source src lib"
+  }
 }
