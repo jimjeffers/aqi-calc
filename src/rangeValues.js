@@ -3,7 +3,12 @@
 import type { RangeValues } from "./types"
 
 const rangeValues: RangeValues = {
-  O3: [
+  NO: [],
+  NO2: [],
+  BENZENE: [],
+  O3: [],
+  SO2: [],
+  C6H5: [
     {
       aqiLevel: { high: 100, low: 51 },
       aqiDescription: "Moderate",
