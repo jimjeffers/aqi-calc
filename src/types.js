@@ -15,7 +15,8 @@ export type TemperatureScale = "F" | "C"
 
 export type Pollutant = {
   substance: Substance,
-  value: number
+  amount: number,
+  unit: Unit
 }
 
 export type Environment = {
@@ -40,5 +41,10 @@ export type PollutantRange = {
 export type RangeValues = {
   O3: Array<PollutantRange>,
   PM2_5: Array<PollutantRange>,
-  PM10: Array<PollutantRange>
+  PM10: Array<PollutantRange>,
+  NO2: Array<PollutantRange>,
+  NO: Array<PollutantRange>,
+  SO2: Array<PollutantRange>,
+  C6H5: Array<PollutantRange>,
+  BENZENE: Array<PollutantRange>
 }
