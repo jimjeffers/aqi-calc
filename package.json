@@ -1,8 +1,10 @@
 {
   "name": "aqi-calc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Easily calculate air quality index values for pollutants.",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "main": "lib/index.js",
   "repository": "https://github.com/jimjeffers/aqi-calc.git",
   "author": "Jim Jeffers",
