@@ -6,14 +6,3 @@ test("calculate moderate a ozone reading", () => {
   const aqi = calculateAQI(ozone, environment)
   expect(aqi).toEqual(51)
 })
-
-// export type Pollutant = {
-//   substance: Substance,
-//   amount: number,
-//   unit: Unit
-// }
-
-// export type Environment = {
-//   temperature: number,
-//   unit: TemperatureScale
-// }
