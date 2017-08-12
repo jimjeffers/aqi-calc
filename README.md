@@ -1,4 +1,4 @@
-AQI
+AQI Calc
 ===
 
 Easily convert pollutant measurements into AQI values per the [EPA's blue scale](https://forum.airnowtech.org/t/the-aqi-equation/169).
@@ -7,8 +7,8 @@ Usage
 -----
 
 ```js
-import {calculateAQI} from "aqi"
-import type { Pollutant, Environment } from "aqi"
+import { calculateAQI } from "aqi-calc"
+import type { Pollutant, Environment } from "aqi-calc"
 
 const sample: Pollutant = {
   metric: "O3",
