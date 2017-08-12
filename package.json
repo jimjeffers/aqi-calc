@@ -1,6 +1,6 @@
 {
   "name": "aqi-calc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Easily calculate air quality index values for pollutants.",
   "files": [
     "lib"
