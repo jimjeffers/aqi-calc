@@ -15,11 +15,14 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1",
     "flow-bin": "^0.48.0",
-    "flow-copy-source": "^1.1.0"
+    "flow-copy-source": "^1.2.0",
+    "jest": "20.x.x"
   },
   "scripts": {
-    "prepublish": "npm run babel-prepublish && npm run flow-prepublish",
-    "babel-prepublish": "babel src/ -d lib",
-    "flow-prepublish": "flow-copy-source src lib"
+    "prepublish": "npm run flush && npm run babel-prepublish && npm run flow-prepublish",
+    "flush": "rm -rf ./lib/**",
+    "babel-prepublish": "babel src/ -d lib --ignore *.test.*",
+    "flow-prepublish": "flow-copy-source -i **/*.test.js src lib",
+    "test": "jest"
   }
 }
