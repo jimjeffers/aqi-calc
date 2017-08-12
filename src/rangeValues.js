@@ -6,33 +6,38 @@ const rangeValues: RangeValues = {
   NO: [],
   NO2: [],
   BENZENE: [],
-  O3: [],
+  C6H5: [],
   SO2: [],
-  C6H5: [
+  O3: [
+    {
+      aqiLevel: { high: 50, low: 0 },
+      aqiDescription: "Good",
+      concentration: { unit: "PPM", range: { high: 0.054, low: 0 } }
+    },
     {
       aqiLevel: { high: 100, low: 51 },
       aqiDescription: "Moderate",
-      concentration: { unit: "PPM", range: { high: 0.054, low: 0 } }
+      concentration: { unit: "PPM", range: { high: 0.07, low: 0.055 } }
     },
     {
       aqiLevel: { high: 150, low: 101 },
       aqiDescription: "Sensitive",
-      concentration: { unit: "PPM", range: { high: 0.07, low: 0.055 } }
+      concentration: { unit: "PPM", range: { high: 0.085, low: 0.071 } }
     },
     {
       aqiLevel: { high: 200, low: 151 },
       aqiDescription: "Unhealthy",
-      concentration: { unit: "PPM", range: { high: 0.085, low: 0.071 } }
+      concentration: { unit: "PPM", range: { high: 0.105, low: 0.086 } }
     },
     {
       aqiLevel: { high: 300, low: 201 },
       aqiDescription: "Very Unhealthy",
-      concentration: { unit: "PPM", range: { high: 0.105, low: 0.086 } }
+      concentration: { unit: "PPM", range: { high: 0.2, low: 0.106 } }
     },
     {
       aqiLevel: { high: 500, low: 301 },
       aqiDescription: "Hazardous",
-      concentration: { unit: "PPM", range: { high: 0.2, low: 0.106 } }
+      concentration: { unit: "PPM", range: { high: 0.4, low: 0.201 } }
     }
   ],
   PM2_5: [
