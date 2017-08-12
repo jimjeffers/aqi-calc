@@ -6,7 +6,7 @@ export const ugm3ToPPB = (
   ugm3: number,
   molecularMass: number,
   degreesCelcius: number
-): number => ugm3 * (273.15 + degreesCelcius) / 12.187 * molecularMass
+): number => ugm3 * (273.15 + degreesCelcius) / 12.187 / molecularMass
 
 export const ppbToUGM3 = (
   ppb: number,
@@ -22,7 +22,7 @@ export const celciusToFarhenheit = (degreesCelcius: number): number =>
   degreesCelcius * 1.8 + 32
 
 export const farhenheitToCelcius = (degreesFarhenheit: number): number =>
-  degreesFarhenheit / 1.8 - 32
+  (degreesFarhenheit - 32) / 1.8
 
 export const getTemperature = ({ temperature, unit }: Environment): number =>
   unit === "C" ? temperature : farhenheitToCelcius(temperature)
