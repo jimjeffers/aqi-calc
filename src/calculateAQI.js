@@ -1,30 +1,41 @@
 //@flow
-import { pollutantRange } from "./pollutantRange"
+import { aqiLevelForSample } from "./pollutantRange"
 import { convertReadingToUnit } from "./conversions"
-import type { Pollutant, Environment } from "./types"
+import type { AQSample, AQIResult } from "./types"
 
-const calculateAQI = (
-  pollutant: Pollutant,
-  environment: ?Environment
-): ?number => {
-  const usableEnvironment: Environment = environment || {
-    temperature: 25,
-    unit: "C"
+const COLOR_CODES = {
+  Good: "#00e400",
+  Moderate: "#ff0",
+  "Unhealthy For Sensitive": "#ff7e00",
+  Unhealthy: "#f00",
+  "Very Unhealthy": "#99004c",
+  Hazardous: "#7e0023"
+}
+
+const calculateAQI = (sample: AQSample): ?AQIResult => {
+  if (!sample.interval) {
+    throw new Error("Must provide an interval of 1H | 8H | 24H")
   }
-  const result = pollutantRange(pollutant, usableEnvironment)
+  if (!sample.temperature) {
+    sample.temperature = {
+      value: 25,
+      unit: "C"
+    }
+  }
+  const result = aqiLevelForSample(sample)
   if (result) {
     const { concentration, aqiLevel } = result
-    const input = convertReadingToUnit(
-      pollutant,
-      usableEnvironment,
-      concentration.unit
-    )
-    return (
-      (aqiLevel.high - aqiLevel.low) /
+    const input = convertReadingToUnit(sample, concentration.unit)
+    const aqi =
+      (aqiLevel.aqi.high - aqiLevel.aqi.low) /
         (concentration.range.high - concentration.range.low) *
         (input - concentration.range.low) +
-      aqiLevel.low
-    )
+      aqiLevel.aqi.low
+    return {
+      aqi,
+      description: aqiLevel.aqiDescription,
+      hexColor: COLOR_CODES[aqiLevel.aqiDescription]
+    }
   }
   return null
 }

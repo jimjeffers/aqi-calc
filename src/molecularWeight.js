@@ -13,10 +13,7 @@ export const C6H5_MASS = 78.11
 export const BENZENE_MASS = C6H5_MASS
 
 export const massValues: { [string]: number } = {
-  BENZENE: BENZENE_MASS,
-  C6H5: C6H5_MASS,
   O3: O3_MASS,
-  NO: NO_MASS,
   NO2: NO2_MASS,
   SO2: SO2_MASS,
   CO: CO_MASS

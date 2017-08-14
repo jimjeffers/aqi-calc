@@ -1,6 +1,6 @@
 //@flow
 import { massForSubstance } from "./molecularWeight"
-import type { Unit, Pollutant, Environment } from "./types"
+import type { Unit, AQSample, Temperature } from "./types"
 
 export const ugm3ToPPB = (
   ugm3: number,
@@ -24,19 +24,17 @@ export const celciusToFarhenheit = (degreesCelcius: number): number =>
 export const farhenheitToCelcius = (degreesFarhenheit: number): number =>
   (degreesFarhenheit - 32) / 1.8
 
-export const getTemperature = ({ temperature, unit }: Environment): number =>
-  unit === "C" ? temperature : farhenheitToCelcius(temperature)
+export const getTemperature = ({ value, unit }: Temperature): number =>
+  unit === "C" ? value : farhenheitToCelcius(value)
 
-export const convertReadingToUnit = (
-  reading: Pollutant,
-  environment: Environment,
-  to: Unit
-): number => {
+export const convertReadingToUnit = (reading: AQSample, to: Unit): number => {
   const { unit, amount } = reading
   if (unit === to) {
     return amount
   }
-  const temperature = getTemperature(environment)
+  const temperature = reading.temperature
+    ? getTemperature(reading.temperature)
+    : 25
   const molecularMass = massForSubstance(reading.substance)
   const conversion = `${unit}|${to}`
   switch (conversion) {

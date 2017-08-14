@@ -1,32 +1,51 @@
 //@flow
 import rangeValues from "./rangeValues"
 import { convertReadingToUnit } from "./conversions"
-import type { Pollutant, PollutantRange, Substance, Environment } from "./types"
+import type {
+  AQSample,
+  AQILevel,
+  AQISearchResult,
+  Substance,
+  Concentration
+} from "./types"
 
-export const valuesForSubstance = (
-  substance: Substance
-): Array<PollutantRange> => rangeValues[substance]
+export const valuesForSubstance = (substance: Substance): Array<AQILevel> =>
+  rangeValues[substance]
 
-export const maxForSubstance = (substance: Substance): ?PollutantRange => {
+export const maxForSubstance = (substance: Substance): ?AQILevel => {
   const values = valuesForSubstance(substance)
   return valuesForSubstance(substance).length > 0
     ? values[values.length - 1]
     : null
 }
 
-export const valueWithinRange = (
-  pollutant: Pollutant,
-  environment: Environment,
-  { concentration: { range: { high, low }, unit } }: PollutantRange
-): boolean => {
-  const value = convertReadingToUnit(pollutant, environment, unit)
-  return value <= high && value >= low
-}
+export const applicableConcentration = (
+  sample: AQSample,
+  { concentrations }: AQILevel
+): Array<Concentration> =>
+  concentrations.filter(
+    ({ range: { high, low }, unit, interval }: Concentration): boolean => {
+      if (interval != sample.interval) {
+        return false
+      }
+      const value = convertReadingToUnit(sample, unit)
+      return value <= high && value >= low
+    }
+  )
 
-export const pollutantRange = (
-  pollutant: Pollutant,
-  environment: Environment
-): ?PollutantRange =>
-  valuesForSubstance(pollutant.substance).filter(range =>
-    valueWithinRange(pollutant, environment, range)
-  )[0] || maxForSubstance(pollutant.substance)
+export const valueWithinRange = (
+  sample: AQSample,
+  aqiLevel: AQILevel
+): boolean => applicableConcentration(sample, aqiLevel).length > 0
+
+export const aqiLevelForSample = (sample: AQSample): ?AQISearchResult => {
+  const aqiLevel = valuesForSubstance(sample.substance).filter(range =>
+    valueWithinRange(sample, range)
+  )[0]
+  if (aqiLevel) {
+    return {
+      aqiLevel,
+      concentration: applicableConcentration(sample, aqiLevel)[0]
+    }
+  }
+}
