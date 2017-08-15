@@ -19,5 +19,6 @@ export const massValues: { [string]: number } = {
   CO: CO_MASS
 }
 
-export const massForSubstance = (substance: Substance): number =>
-  massValues[substance]
+const massForSubstance = (substance: Substance): number => massValues[substance]
+
+export default massForSubstance
