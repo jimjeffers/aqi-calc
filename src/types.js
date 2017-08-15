@@ -13,6 +13,7 @@ export type AirQualityDescription =
   | "Unhealthy"
   | "Very Unhealthy"
   | "Hazardous"
+  | "NONE"
 
 export type TemperatureScale = "F" | "C"
 

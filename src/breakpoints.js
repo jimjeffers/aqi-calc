@@ -52,6 +52,13 @@ const breakpoints: AQIBreakPoints = {
       concentrations: [
         { unit: "PPM", range: { high: 50.4, low: 40.5 }, interval: "8H" }
       ]
+    },
+    {
+      aqi: { high: 999, low: 501 },
+      aqiDescription: "Hazardous",
+      concentrations: [
+        { unit: "PPM", range: { high: 99999, low: 50.5 }, interval: "8H" }
+      ]
     }
   ],
   NO2: [
@@ -103,6 +110,13 @@ const breakpoints: AQIBreakPoints = {
       concentrations: [
         { unit: "PPB", range: { high: 2049, low: 1650 }, interval: "1H" }
       ]
+    },
+    {
+      aqi: { high: 99999, low: 501 },
+      aqiDescription: "Hazardous",
+      concentrations: [
+        { unit: "PPB", range: { high: 99999, low: 2050 }, interval: "1H" }
+      ]
     }
   ],
   SO2: [
@@ -135,6 +149,13 @@ const breakpoints: AQIBreakPoints = {
       ]
     },
     {
+      aqi: { high: -1, low: -1 },
+      aqiDescription: "NONE",
+      concentrations: [
+        { unit: "PPB", range: { high: 304, low: 0 }, interval: "24H" }
+      ]
+    },
+    {
       aqi: { high: 300, low: 201 },
       aqiDescription: "Very Unhealthy",
       concentrations: [
@@ -153,6 +174,13 @@ const breakpoints: AQIBreakPoints = {
       aqiDescription: "Hazardous",
       concentrations: [
         { unit: "PPB", range: { high: 1004, low: 805 }, interval: "24H" }
+      ]
+    },
+    {
+      aqi: { high: 501, low: 999 },
+      aqiDescription: "Hazardous",
+      concentrations: [
+        { unit: "PPB", range: { high: 99999, low: 1005 }, interval: "24H" }
       ]
     }
   ],
@@ -201,6 +229,21 @@ const breakpoints: AQIBreakPoints = {
       concentrations: [
         { unit: "PPM", range: { high: 0.604, low: 0.405 }, interval: "1H" }
       ]
+    },
+    {
+      aqi: { high: 999, low: 501 },
+      aqiDescription: "Hazardous",
+      concentrations: [
+        { unit: "PPM", range: { high: 99999, low: 0.505 }, interval: "1H" }
+      ]
+    },
+    {
+      aqi: { high: -1, low: -1 },
+      aqiDescription: "NONE",
+      concentrations: [
+        { unit: "PPM", range: { high: 0.124, low: 0 }, interval: "1H" },
+        { unit: "PPM", range: { high: 99999, low: 0.505 }, interval: "8H" }
+      ]
     }
   ],
   PM2_5: [
@@ -240,10 +283,24 @@ const breakpoints: AQIBreakPoints = {
       ]
     },
     {
-      aqi: { high: 500, low: 301 },
+      aqi: { high: 400, low: 301 },
       aqiDescription: "Hazardous",
       concentrations: [
-        { unit: "ug/m3", range: { high: 500.4, low: 250.5 }, interval: "24H" }
+        { unit: "ug/m3", range: { high: 350.4, low: 250.5 }, interval: "24H" }
+      ]
+    },
+    {
+      aqi: { high: 500, low: 401 },
+      aqiDescription: "Hazardous",
+      concentrations: [
+        { unit: "ug/m3", range: { high: 500.4, low: 350.5 }, interval: "24H" }
+      ]
+    },
+    {
+      aqi: { high: 999, low: 501 },
+      aqiDescription: "Hazardous",
+      concentrations: [
+        { unit: "ug/m3", range: { high: 99999.9, low: 500.5 }, interval: "24H" }
       ]
     }
   ],
@@ -284,10 +341,24 @@ const breakpoints: AQIBreakPoints = {
       ]
     },
     {
-      aqi: { high: 500, low: 301 },
+      aqi: { high: 400, low: 301 },
       aqiDescription: "Hazardous",
       concentrations: [
-        { unit: "ug/m3", range: { high: 604, low: 425 }, interval: "24H" }
+        { unit: "ug/m3", range: { high: 504, low: 425 }, interval: "24H" }
+      ]
+    },
+    {
+      aqi: { high: 500, low: 401 },
+      aqiDescription: "Hazardous",
+      concentrations: [
+        { unit: "ug/m3", range: { high: 604, low: 505 }, interval: "24H" }
+      ]
+    },
+    {
+      aqi: { high: 999, low: 501 },
+      aqiDescription: "Hazardous",
+      concentrations: [
+        { unit: "ug/m3", range: { high: 99999, low: 605 }, interval: "24H" }
       ]
     }
   ]

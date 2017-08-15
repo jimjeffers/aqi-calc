@@ -4,6 +4,7 @@ import { convertReadingToUnit } from "./conversions"
 import type { AQSample, AQIResult } from "./types"
 
 const COLOR_CODES = {
+  NONE: "transparent",
   Good: "#00e400",
   Moderate: "#ff0",
   "Unhealthy For Sensitive": "#ff7e00",
