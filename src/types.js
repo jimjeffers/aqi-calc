@@ -53,7 +53,7 @@ export type AQISearchResult = {
 
 export type AQIResult = {
   aqi: number,
-  description: string,
+  description: AirQualityDescription,
   hexColor: string
 }
 

@@ -1,7 +1,9 @@
 AQI Calc
 ===
 
-Easily convert pollutant measurements into AQI values per the [EPA's blue scale](https://forum.airnowtech.org/t/the-aqi-equation/169).
+Easily convert pollutant measurements into AQI values per the [EPA's blue scale](https://forum.airnowtech.org/t/the-aqi-equation/169). For additional references on how
+AQI is calculated see the thoughtful documentation on Wikipedia for [Computing the AQI](https://en.wikipedia.org/wiki/Air_quality_index#Computing_the_AQI). Also, for a complete
+reference on all of the official break points view the official [EPA AQI Breakpoints page](https://aqs.epa.gov/aqsweb/documents/codetables/aqi_breakpoints.html).
 
 Usage
 -----
@@ -21,7 +23,8 @@ const sample: AQSample = {
   interval: "8H"
 }
 
-console.log(calculateAQI(sample)) // {aqi: 51, description: "Moderate", hexColor: "#ff0"}
+console.log(calculateAQI(sample)) 
+// => {aqi: 51, description: "Moderate", hexColor: "#ff0"}
 ```
 
 Defining an Air Quality Sample:
@@ -64,5 +67,28 @@ type TemperatureScale = "F" | "C"
 type Temperature = {
   value: number,
   unit: TemperatureScale
+}
+```
+
+Result Output:
+--------
+
+The ouput of the calculateAQI method is returned as an `AQIResult` type which
+defines the resulting AQI along with the corresponding description and hex color
+for the matching break point:
+
+```js
+export type AirQualityDescription =
+  | "Good"
+  | "Moderate"
+  | "Unhealthy For Sensitive"
+  | "Unhealthy"
+  | "Very Unhealthy"
+  | "Hazardous"
+
+type AQIResult = {
+  aqi: number,
+  description: AirQualityDescription,
+  hexColor: string
 }
 ```
