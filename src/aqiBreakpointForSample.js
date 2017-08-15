@@ -3,16 +3,17 @@ import rangeValues from "./rangeValues"
 import { convertReadingToUnit } from "./conversions"
 import type {
   AQSample,
-  AQILevel,
+  AQIBreakPoint,
   AQISearchResult,
   Substance,
   Concentration
 } from "./types"
 
-export const valuesForSubstance = (substance: Substance): Array<AQILevel> =>
-  rangeValues[substance]
+export const valuesForSubstance = (
+  substance: Substance
+): Array<AQIBreakPoint> => rangeValues[substance]
 
-export const maxForSubstance = (substance: Substance): ?AQILevel => {
+export const maxForSubstance = (substance: Substance): ?AQIBreakPoint => {
   const values = valuesForSubstance(substance)
   return valuesForSubstance(substance).length > 0
     ? values[values.length - 1]
@@ -21,7 +22,7 @@ export const maxForSubstance = (substance: Substance): ?AQILevel => {
 
 export const applicableConcentration = (
   sample: AQSample,
-  { concentrations }: AQILevel
+  { concentrations }: AQIBreakPoint
 ): Array<Concentration> =>
   concentrations.filter(
     ({ range: { high, low }, unit, interval }: Concentration): boolean => {
@@ -35,7 +36,7 @@ export const applicableConcentration = (
 
 export const valueWithinRange = (
   sample: AQSample,
-  aqiLevel: AQILevel
+  aqiLevel: AQIBreakPoint
 ): boolean => applicableConcentration(sample, aqiLevel).length > 0
 
 export const aqiBreakpointForSample = (sample: AQSample): ?AQISearchResult => {
