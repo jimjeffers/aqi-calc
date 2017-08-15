@@ -40,14 +40,14 @@ export type Concentration = {
   interval: Interval
 }
 
-export type AQILevel = {
+export type AQIBreakPoint = {
   concentrations: Array<Concentration>,
   aqi: Range,
   aqiDescription: AirQualityDescription
 }
 
 export type AQISearchResult = {
-  aqiLevel: AQILevel,
+  aqiLevel: AQIBreakPoint,
   concentration: Concentration
 }
 
@@ -57,11 +57,11 @@ export type AQIResult = {
   hexColor: string
 }
 
-export type RangeValues = {
-  O3: Array<AQILevel>,
-  PM2_5: Array<AQILevel>,
-  PM10: Array<AQILevel>,
-  NO2: Array<AQILevel>,
-  CO: Array<AQILevel>,
-  SO2: Array<AQILevel>
+export type AQIBreakPoints = {
+  O3: Array<AQIBreakPoint>,
+  PM2_5: Array<AQIBreakPoint>,
+  PM10: Array<AQIBreakPoint>,
+  NO2: Array<AQIBreakPoint>,
+  CO: Array<AQIBreakPoint>,
+  SO2: Array<AQIBreakPoint>
 }

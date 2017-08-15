@@ -1,8 +1,8 @@
 //@flow
 
-import type { RangeValues } from "./types"
+import type { AQIBreakPoints } from "./types"
 
-const rangeValues: RangeValues = {
+const rangeValues: AQIBreakPoints = {
   CO: [
     {
       aqi: { high: 50, low: 0 },

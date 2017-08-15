@@ -1,5 +1,5 @@
 //@flow
-import { aqiBreakpointForSample } from "./pollutantRange"
+import { aqiBreakpointForSample } from "./aqiBreakpointForSample"
 import { convertReadingToUnit } from "./conversions"
 import type { AQSample, AQIResult } from "./types"
 
