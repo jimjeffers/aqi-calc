@@ -38,7 +38,7 @@ export const valueWithinRange = (
   aqiLevel: AQILevel
 ): boolean => applicableConcentration(sample, aqiLevel).length > 0
 
-export const aqiLevelForSample = (sample: AQSample): ?AQISearchResult => {
+export const aqiBreakpointForSample = (sample: AQSample): ?AQISearchResult => {
   const aqiLevel = valuesForSubstance(sample.substance).filter(range =>
     valueWithinRange(sample, range)
   )[0]

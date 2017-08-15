@@ -1,5 +1,5 @@
 //@flow
-import { aqiLevelForSample } from "./pollutantRange"
+import { aqiBreakpointForSample } from "./pollutantRange"
 import { convertReadingToUnit } from "./conversions"
 import type { AQSample, AQIResult } from "./types"
 
@@ -22,7 +22,7 @@ const calculateAQI = (sample: AQSample): ?AQIResult => {
       unit: "C"
     }
   }
-  const result = aqiLevelForSample(sample)
+  const result = aqiBreakpointForSample(sample)
   if (result) {
     const { concentration, aqiLevel } = result
     const input = convertReadingToUnit(sample, concentration.unit)
