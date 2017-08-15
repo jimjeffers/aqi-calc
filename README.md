@@ -71,7 +71,7 @@ type Temperature = {
 ```
 
 Result Output:
---------
+--------------
 
 The ouput of the calculateAQI method is returned as an `AQIResult` type which
 defines the resulting AQI along with the corresponding description and hex color
