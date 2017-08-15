@@ -2,7 +2,7 @@
 
 import type { AQIBreakPoints } from "./types"
 
-const rangeValues: AQIBreakPoints = {
+const breakpoints: AQIBreakPoints = {
   CO: [
     {
       aqi: { high: 50, low: 0 },
@@ -293,4 +293,4 @@ const rangeValues: AQIBreakPoints = {
   ]
 }
 
-export default rangeValues
+export default breakpoints

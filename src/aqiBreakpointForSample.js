@@ -1,5 +1,5 @@
 //@flow
-import rangeValues from "./rangeValues"
+import breakpoints from "./breakpoints"
 import { convertReadingToUnit } from "./conversions"
 import type {
   AQSample,
@@ -9,13 +9,13 @@ import type {
   Concentration
 } from "./types"
 
-export const valuesForSubstance = (
+export const breakpointsForSubstance = (
   substance: Substance
-): Array<AQIBreakPoint> => rangeValues[substance]
+): Array<AQIBreakPoint> => breakpoints[substance]
 
 export const maxForSubstance = (substance: Substance): ?AQIBreakPoint => {
-  const values = valuesForSubstance(substance)
-  return valuesForSubstance(substance).length > 0
+  const values = breakpointsForSubstance(substance)
+  return breakpointsForSubstance(substance).length > 0
     ? values[values.length - 1]
     : null
 }
@@ -40,7 +40,7 @@ export const valueWithinRange = (
 ): boolean => applicableConcentration(sample, aqiLevel).length > 0
 
 export const aqiBreakpointForSample = (sample: AQSample): ?AQISearchResult => {
-  const aqiLevel = valuesForSubstance(sample.substance).filter(range =>
+  const aqiLevel = breakpointsForSubstance(sample.substance).filter(range =>
     valueWithinRange(sample, range)
   )[0]
   if (aqiLevel) {

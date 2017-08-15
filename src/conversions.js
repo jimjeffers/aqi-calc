@@ -1,5 +1,5 @@
 //@flow
-import { massForSubstance } from "./molecularWeight"
+import massForSubstance from "./massForSubstance"
 import type { Unit, AQSample, Temperature } from "./types"
 
 export const ugm3ToPPB = (
