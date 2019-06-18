@@ -28,6 +28,7 @@ export enum AirQualityDescription {
   Hazardous = "Hazardous",
   None = "NONE"
 }
+
 export enum TemperatureScale {
   Farhenheit = "F",
   Celcius = "C"
