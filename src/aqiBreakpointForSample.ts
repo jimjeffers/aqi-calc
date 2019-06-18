@@ -1,19 +1,18 @@
-//@flow
 import breakpoints from "./breakpoints"
 import { convertReadingToUnit } from "./conversions"
-import type {
-  AQSample,
-  AQIBreakPoint,
-  AQISearchResult,
-  Substance,
-  Concentration
+import {
+  IBreakPoint,
+  IConcentration,
+  ISample,
+  ISearchResult,
+  Substance
 } from "./types"
 
 export const breakpointsForSubstance = (
   substance: Substance
-): Array<AQIBreakPoint> => breakpoints[substance]
+): IBreakPoint[] => breakpoints[substance]
 
-export const maxForSubstance = (substance: Substance): ?AQIBreakPoint => {
+export const maxForSubstance = (substance: Substance): IBreakPoint | null => {
   const values = breakpointsForSubstance(substance)
   return breakpointsForSubstance(substance).length > 0
     ? values[values.length - 1]
@@ -21,12 +20,12 @@ export const maxForSubstance = (substance: Substance): ?AQIBreakPoint => {
 }
 
 export const applicableConcentration = (
-  sample: AQSample,
-  { concentrations }: AQIBreakPoint
-): Array<Concentration> =>
+  sample: ISample,
+  { concentrations }: IBreakPoint
+): IConcentration[] =>
   concentrations.filter(
-    ({ range: { high, low }, unit, interval }: Concentration): boolean => {
-      if (interval != sample.interval) {
+    ({ range: { high, low }, unit, interval }: IConcentration): boolean => {
+      if (interval !== sample.interval) {
         return false
       }
       const value = convertReadingToUnit(sample, unit)
@@ -35,11 +34,11 @@ export const applicableConcentration = (
   )
 
 export const valueWithinRange = (
-  sample: AQSample,
-  aqiLevel: AQIBreakPoint
+  sample: ISample,
+  aqiLevel: IBreakPoint
 ): boolean => applicableConcentration(sample, aqiLevel).length > 0
 
-export const aqiBreakpointForSample = (sample: AQSample): ?AQISearchResult => {
+export const aqiBreakpointForSample = (sample: ISample): ISearchResult | null => {
   const aqiLevel = breakpointsForSubstance(sample.substance).filter(range =>
     valueWithinRange(sample, range)
   )[0]
@@ -49,4 +48,5 @@ export const aqiBreakpointForSample = (sample: AQSample): ?AQISearchResult => {
       concentration: applicableConcentration(sample, aqiLevel)[0]
     }
   }
+  return null
 }

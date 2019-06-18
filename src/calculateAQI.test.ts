@@ -1,12 +1,13 @@
-import calculateAQI from "../calculateAQI"
+import calculateAQI from "./calculateAQI"
+import { Interval, ISample, Substance, TemperatureScale, Unit } from "./types"
 
 test("calculate moderate a ozone reading", () => {
-  const ozone = {
-    substance: "O3",
+  const ozone: ISample = {
     amount: 0.055,
-    unit: "PPM",
-    temperature: { value: 25, unit: "C" },
-    interval: "8H"
+    interval: Interval.EightHour,
+    substance: Substance.Ozone,
+    temperature: { value: 25, scale: TemperatureScale.Celcius },
+    unit: Unit.PPM,
   }
   const result = calculateAQI(ozone)
   expect(result.aqi).toEqual(51)
@@ -15,26 +16,26 @@ test("calculate moderate a ozone reading", () => {
 })
 
 test("calculate a none existent ozone reading", () => {
-  const ozone = {
-    substance: "O3",
+  const ozone: ISample = {
     amount: 0.055,
-    unit: "PPM",
-    temperature: { value: 25, unit: "C" },
-    interval: "1H"
+    interval: Interval.OneHour,
+    substance: Substance.Ozone,
+    temperature: { value: 25, scale: TemperatureScale.Celcius },
+    unit: Unit.PPM,
   }
   const result = calculateAQI(ozone)
   expect(result.aqi).toEqual(-1)
   expect(result.description).toEqual("NONE")
-  expect(result.hexColor).toEqual("transparent")
+  expect(result.hexColor).toEqual("#000")
 })
 
 test("calculate an ozone reading that goes beyond hazardous", () => {
-  const ozone = {
-    substance: "O3",
+  const ozone: ISample = {
     amount: 0.975,
-    unit: "PPM",
-    temperature: { value: 25, unit: "C" },
-    interval: "1H"
+    interval: Interval.OneHour,
+    substance: Substance.Ozone,
+    temperature: { value: 25, scale: TemperatureScale.Celcius },
+    unit: Unit.PPM,
   }
   const result = calculateAQI(ozone)
   expect(Math.round(result.aqi)).toEqual(501)

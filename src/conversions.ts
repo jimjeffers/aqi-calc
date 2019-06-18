@@ -1,6 +1,5 @@
-//@flow
 import massForSubstance from "./massForSubstance"
-import type { Unit, AQSample, Temperature } from "./types"
+import { ISample, ITemperature, TemperatureScale, Unit } from "./types"
 
 export const ugm3ToPPB = (
   ugm3: number,
@@ -24,10 +23,10 @@ export const celciusToFarhenheit = (degreesCelcius: number): number =>
 export const farhenheitToCelcius = (degreesFarhenheit: number): number =>
   (degreesFarhenheit - 32) / 1.8
 
-export const getTemperature = ({ value, unit }: Temperature): number =>
-  unit === "C" ? value : farhenheitToCelcius(value)
+export const getTemperature = ({ value, scale }: ITemperature): number =>
+  scale === TemperatureScale.Celcius ? value : farhenheitToCelcius(value)
 
-export const convertReadingToUnit = (reading: AQSample, to: Unit): number => {
+export const convertReadingToUnit = (reading: ISample, to: Unit): number => {
   const { unit, amount } = reading
   if (unit === to) {
     return amount
