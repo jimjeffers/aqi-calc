@@ -9,16 +9,15 @@ Usage
 -----
 
 ```js
-import { calculateAQI } from "aqi-calc"
-import type { AQSample } from "aqi-calc"
+import { AQSample, calculateAQI, Substance, TemperatureScale, Unit } from "aqi-calc"
 
 const sample: AQSample = {
-  metric: "O3",
-  unit: "PPM",
+  substance: Substance.Ozone,
+  unit: Unit.PPM,
   value: 0.055,
   temperature:{
     value: 25,
-    unit: "C"
+    scale: TemperatureScale.Celcius
   },
   interval: "8H"
 }
@@ -31,26 +30,38 @@ Defining an Air Quality Sample:
 -------------------------------
 
 To convert a reading simply provide the input amount, the substance, 
-and the unit the input amount represents. See the flow types below for
+and the unit the input amount represents. See the types below for
 supported values:
 
 ```js
-type Substance =
-  | "SO2"
-  | "CO"
-  | "NO2"
-  | "O3"
-  | "PM2_5"
-  | "PM10"
 
-type Unit = "PPM" | "PPB" | "ug/m3"
+enum Substance {
+  CarbonMonoxide = "CO",
+  NitrousDioxide = "NO2",
+  Ozone = "O3",
+  SulfurDioxide = "SO2",
+  FineParticles = "PM2_5",
+  CoarseParticles = "PM10"
+}
 
-type AQSample = {
+enum Unit {
+  PPM = "PPM",
+  PPB = "PPB",
+  UG_M3 = "ug/m3"
+}
+
+enum Interval {
+  OneHour = "1H",
+  EightHour = "8H",
+  Day = "24H"
+}
+
+interface ISample = {
   substance: Substance,
   interval: Interval,
   amount: number,
   unit: Unit,
-  temperature?: Temperature
+  temperature?: ITemperature
 }
 ```
 
@@ -62,11 +73,14 @@ the AQI calculations. If you do not know the temperature a default environment
 assuming 25C will be used during any conversions.
 
 ```js
-type TemperatureScale = "F" | "C"
+enum TemperatureScale {
+  Farhenheit = "F",
+  Celcius = "C"
+}
 
-type Temperature = {
+interface ITemperature = {
   value: number,
-  unit: TemperatureScale
+  scale: TemperatureScale
 }
 ```
 
@@ -78,13 +92,15 @@ defines the resulting AQI along with the corresponding description and hex color
 for the matching break point:
 
 ```js
-export type AirQualityDescription =
-  | "Good"
-  | "Moderate"
-  | "Unhealthy For Sensitive"
-  | "Unhealthy"
-  | "Very Unhealthy"
-  | "Hazardous"
+enum AirQualityDescription {
+  Good = "Good",
+  Moderate = "Moderate",
+  Sensitive = "Unhealthy For Sensitive",
+  Unhealthy = "Unhealthy",
+  VeryUnhealthy = "Very Unhealthy",
+  Hazardous = "Hazardous",
+  None = "NONE"
+}
 
 type AQIResult = {
   aqi: number,
