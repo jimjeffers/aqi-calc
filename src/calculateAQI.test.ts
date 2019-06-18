@@ -15,6 +15,20 @@ test("calculate moderate a ozone reading", () => {
   expect(result.hexColor).toEqual("#ff0")
 })
 
+test("calculate moderate a ozone reading by converting PPB to PPM", () => {
+  const ozone: ISample = {
+    amount: 55,
+    interval: Interval.EightHour,
+    substance: Substance.Ozone,
+    temperature: { value: 25, scale: TemperatureScale.Celcius },
+    unit: Unit.PPB
+  }
+  const result = calculateAQI(ozone)
+  expect(result.aqi).toEqual(51)
+  expect(result.description).toEqual("Moderate")
+  expect(result.hexColor).toEqual("#ff0")
+})
+
 test("calculate a none existent ozone reading", () => {
   const ozone: ISample = {
     amount: 0.055,
