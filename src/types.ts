@@ -26,7 +26,7 @@ export enum AirQualityDescription {
   Unhealthy = "Unhealthy",
   VeryUnhealthy = "Very Unhealthy",
   Hazardous = "Hazardous",
-  None = "NONE",
+  None = "NONE"
 }
 export enum TemperatureScale {
   Farhenheit = "F",

@@ -7,7 +7,7 @@ test("calculate moderate a ozone reading", () => {
     interval: Interval.EightHour,
     substance: Substance.Ozone,
     temperature: { value: 25, scale: TemperatureScale.Celcius },
-    unit: Unit.PPM,
+    unit: Unit.PPM
   }
   const result = calculateAQI(ozone)
   expect(result.aqi).toEqual(51)
@@ -21,7 +21,7 @@ test("calculate a none existent ozone reading", () => {
     interval: Interval.OneHour,
     substance: Substance.Ozone,
     temperature: { value: 25, scale: TemperatureScale.Celcius },
-    unit: Unit.PPM,
+    unit: Unit.PPM
   }
   const result = calculateAQI(ozone)
   expect(result.aqi).toEqual(-1)
@@ -35,7 +35,7 @@ test("calculate an ozone reading that goes beyond hazardous", () => {
     interval: Interval.OneHour,
     substance: Substance.Ozone,
     temperature: { value: 25, scale: TemperatureScale.Celcius },
-    unit: Unit.PPM,
+    unit: Unit.PPM
   }
   const result = calculateAQI(ozone)
   expect(Math.round(result.aqi)).toEqual(501)

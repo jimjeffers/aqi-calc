@@ -8,9 +8,8 @@ import {
   Substance
 } from "./types"
 
-export const breakpointsForSubstance = (
-  substance: Substance
-): IBreakPoint[] => breakpoints[substance]
+export const breakpointsForSubstance = (substance: Substance): IBreakPoint[] =>
+  breakpoints[substance]
 
 export const maxForSubstance = (substance: Substance): IBreakPoint | null => {
   const values = breakpointsForSubstance(substance)
@@ -38,7 +37,9 @@ export const valueWithinRange = (
   aqiLevel: IBreakPoint
 ): boolean => applicableConcentration(sample, aqiLevel).length > 0
 
-export const aqiBreakpointForSample = (sample: ISample): ISearchResult | null => {
+export const aqiBreakpointForSample = (
+  sample: ISample
+): ISearchResult | null => {
   const aqiLevel = breakpointsForSubstance(sample.substance).filter(range =>
     valueWithinRange(sample, range)
   )[0]

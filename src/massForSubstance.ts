@@ -12,11 +12,16 @@ export const BENZENE_MASS = C6H5_MASS
 
 const massForSubstance = (substance: Substance): number => {
   switch (substance) {
-    case Substance.CarbonMonoxide: return CO_MASS
-    case Substance.NitrousDioxide: return NO2_MASS
-    case Substance.Ozone: return O3_MASS
-    case Substance.SulfurDioxide: return SO2_MASS
-    default: return 0
+    case Substance.CarbonMonoxide:
+      return CO_MASS
+    case Substance.NitrousDioxide:
+      return NO2_MASS
+    case Substance.Ozone:
+      return O3_MASS
+    case Substance.SulfurDioxide:
+      return SO2_MASS
+    default:
+      return 0
   }
 }
 

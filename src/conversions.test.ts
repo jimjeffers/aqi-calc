@@ -3,7 +3,7 @@ import {
   convertReadingToUnit,
   farhenheitToCelcius
 } from "./conversions"
-import { Interval, Substance, TemperatureScale, Unit } from "./types";
+import { Interval, Substance, TemperatureScale, Unit } from "./types"
 
 test("it shuld accurately convert farhenheight to celcius", () => {
   expect(celciusToFarhenheit(25)).toEqual(77)
@@ -21,8 +21,7 @@ test("it should accurately convert O3 from PPB to μg/m3 if using Farhenheight",
       interval: Interval.EightHour,
       substance: Substance.Ozone,
       temperature: { value: 77, scale: TemperatureScale.Farhenheit },
-      unit: Unit.PPB,
-
+      unit: Unit.PPB
     },
     Unit.UG_M3
   )
@@ -112,7 +111,7 @@ test("it should accurately convert NO from ppb to μg/m3", () => {
       interval: Interval.Day,
       substance: Substance.CarbonMonoxide,
       temperature: { value: 25, scale: TemperatureScale.Celcius },
-      unit: Unit.PPB,
+      unit: Unit.PPB
     },
     Unit.UG_M3
   )
