@@ -13,9 +13,9 @@ export const ppbToUGM3 = (
   degreesCelcius: number
 ): number => (ppb * 12.187 * molecularMass) / (273.15 + degreesCelcius)
 
-export const ppbToPPM = (ppb: number): number => ppb * 1000
+export const ppbToPPM = (ppb: number): number => ppb / 1000
 
-export const ppmToPPB = (ppb: number): number => ppb / 1000
+export const ppmToPPB = (ppb: number): number => ppb * 1000
 
 export const celciusToFarhenheit = (degreesCelcius: number): number =>
   degreesCelcius * 1.8 + 32
