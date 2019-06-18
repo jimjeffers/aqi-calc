@@ -43,7 +43,7 @@ const calculateAQI = (sample: ISample): IResult => {
     const aqi =
       ((aqiLevel.aqi.high - aqiLevel.aqi.low) /
         (concentration.range.high - concentration.range.low)) *
-        (input - concentration.range.low) +
+      (input - concentration.range.low) +
       aqiLevel.aqi.low
     return {
       aqi,
